@@ -7,4 +7,7 @@ My own boilerplate for Unity Projects, with prefabs, and generic controllers alr
 
 # UI Prefabs
 
--Credits Panel
+## Credits Panel
+Add the CreditPanel Prefab to your canvas.
+Create a "Person" scriptable object, use their first name for filename.
+Add the created person to the "People" list.
