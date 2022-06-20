@@ -1,11 +1,19 @@
 # ss-boilerplate
 My own boilerplate for Unity Projects, with prefabs, and generic controllers already built (such as music, sound, character, etc).
 
+# Clip Script
+This is the ScriptableObject for soundfx and songs. Simply give it a name and an auido clip and the sound and music controllers can handle the rest.
+
 # Sound Controller
+This Game Controller handles the sound fx. It has a list of ClipScripts. You just need to call the playEffect() function and as long as their is a ClipScript (from the list) that has a name that matches it will play the effect. It will scale up the number of audio sources to match the number of effects that need to be played.
 
 # Music Controller
+This Game Controller handles the music. To play a clip you can call loopClip() or fadeInClip(), depending on your needs. The stopClip() and endLoop() functions are also available.
 
 # UI Prefabs
+
+## Defaultable Text
+This object will save a reference to it's initial text, and then when calling the updateText function it will display the default text, plus the new text.
 
 ## Credits Panel
 1. Add the CreditPanel Prefab to your canvas.
