@@ -36,15 +36,15 @@ public class PlayerStateMachine : MonoBehaviour
                 state = CharStates.Idle_Right;
             }
         }
-        if(movement.x > 0) {
-            state = CharStates.Walk_Right;
-        } else if(movement.x < 0) {
-            state = CharStates.Walk_Left;
-        }
         if(movement.y > 0) {
             state = CharStates.Walk_Top;
         } else if(movement.y < 0) {
             state = CharStates.Walk_Down;
+        }
+        if(movement.x > 0) {
+            state = CharStates.Walk_Right;
+        } else if(movement.x < 0) {
+            state = CharStates.Walk_Left;
         }
     }
 

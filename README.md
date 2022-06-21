@@ -21,6 +21,12 @@ This Game Controller handles the music. To play a clip you can call loopClip() o
 ## Defaultable Text
 This object will save a reference to it's initial text, and then when calling the updateText function it will display the default text, plus the new text.
 
+## Countdown Slider
+This slider will constantly move up or down depending on the isAppreciating and isDepreciating booleans. Call the startAppreciating() or startDepreciating() functions to go either direction. Optional reset boolean can be passed to either or to have the slider reset when the slider.value = minValue or maxValue (depending on the direction needed).
+
+## Manual Update Slider
+This slider will lerp the slider.value between the currentSetValue. Just need to call setCurrentValue() with the new value and it will animate the correct direction, up or down.
+
 ## Credits Panel
 1. Add the CreditPanel Prefab to your canvas.
 2. Add the "CategoryTitle" and "PersonText" to the CreditPanel script (adjust font, size, color, etc as needed)
