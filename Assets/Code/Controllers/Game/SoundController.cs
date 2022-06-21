@@ -73,15 +73,6 @@ public class SoundController : MonoBehaviour
         availablePlayer.Play();
     }
 
-    public void playFootSteps()
-    {
-        AudioSource availablePlayer = availableSource();
-        availablePlayer.clip = stringToClip("footsteps").clip;
-        availablePlayer.volume = volume;
-        availablePlayer.Play();
-        availablePlayer.loop = true;
-    }
-
     public void playRandomSound()
     {
         int randomIndex = Random.Range(0, fxs.Count);

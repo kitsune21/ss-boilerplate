@@ -1,6 +1,12 @@
 # ss-boilerplate
 My own boilerplate for Unity Projects, with prefabs, and generic controllers already built (such as music, sound, character, etc).
 
+# Character Controllers
+Default player character controllers.
+
+## TopDown
+This is for Zelda-like movement.
+
 # Clip Script
 This is the ScriptableObject for soundfx and songs. Simply give it a name and an auido clip and the sound and music controllers can handle the rest.
 
