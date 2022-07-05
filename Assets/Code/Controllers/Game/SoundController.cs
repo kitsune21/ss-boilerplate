@@ -9,12 +9,13 @@ public class SoundController : MonoBehaviour
     private List<AudioSource> audioPlayers;
 
     public float volume;
-    
-    // Start is called before the first frame update
-    void Start()
+    public DefaultableText soundVolumeText;
+
+    void Awake()
     {
         audioPlayers = new List<AudioSource>();
         volume = 1f;
+        soundVolumeText.updateText("10");
     }
 
     void FixedUpdate()
@@ -80,5 +81,13 @@ public class SoundController : MonoBehaviour
         availablePlayer.clip = fxs[randomIndex].clip;
         availablePlayer.volume = volume;
         availablePlayer.Play();
+    }
+
+    public void updateVolume(float newVolume) {
+        volume = newVolume;
+        float volumeText = newVolume * 10;
+        int volumeTextInt = (int)volumeText;
+        soundVolumeText.updateText(volumeTextInt.ToString());
+        playEffect("click");
     }
 }

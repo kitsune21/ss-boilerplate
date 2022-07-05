@@ -138,6 +138,34 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""66bc936b-aeb9-4340-afd1-d488802fcd26"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenCloseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""a698d038-ccf0-4053-add0-33d3712719aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""938afcd2-e8af-43d9-8576-16273dbebe5e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenCloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -145,6 +173,9 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_OpenCloseMenu = m_Menu.FindAction("OpenCloseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,8 +264,45 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         }
     }
     public CharacterActions @Character => new CharacterActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_OpenCloseMenu;
+    public struct MenuActions
+    {
+        private @TopDownPlayerController m_Wrapper;
+        public MenuActions(@TopDownPlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenCloseMenu => m_Wrapper.m_Menu_OpenCloseMenu;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @OpenCloseMenu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
+                @OpenCloseMenu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
+                @OpenCloseMenu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenCloseMenu.started += instance.OnOpenCloseMenu;
+                @OpenCloseMenu.performed += instance.OnOpenCloseMenu;
+                @OpenCloseMenu.canceled += instance.OnOpenCloseMenu;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface ICharacterActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnOpenCloseMenu(InputAction.CallbackContext context);
     }
 }

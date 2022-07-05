@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    private AudioSource audioPlayer;
+    private AudioSource audioPlayer1;
+    private AudioSource audioPlayer2;
+    private AudioSource player;
     public float volume;
-    public float currentVolume;
+    private bool isPlaying1;
 
     public List<ClipScript> songs = new List<ClipScript>();
     private ClipScript currentClip;
 
-    public bool isFading = false;
+    public DefaultableText musicVolumeText;
     
-    // Start is called before the first frame update
     void Start()
     {
-        audioPlayer = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        if(isFading)
-        {
-            if(currentVolume < volume)
-            {
-                currentVolume += 0.001f;
-                audioPlayer.volume = currentVolume;
-            } else
-            {
-                isFading = false;
-                currentVolume = volume;
-            }
-        }
+        audioPlayer1 = gameObject.AddComponent<AudioSource>();
+        audioPlayer2 = gameObject.AddComponent<AudioSource>();
+        player = audioPlayer1;
+        loopClip("menu");
+        musicVolumeText.updateText("10");
+        isPlaying1 = true;
     }
 
 
@@ -52,24 +42,24 @@ public class MusicController : MonoBehaviour
     public void loopClip(string clip)
     {
         currentClip = stringToClip(clip);
-        audioPlayer.clip = currentClip.clip;
-        audioPlayer.loop = true;
-        audioPlayer.Play();
+        player.clip = currentClip.clip;
+        player.loop = true;
+        player.Play();
     }
 
     public void stopClip()
     {
-        audioPlayer.Stop();
+        player.Stop();
     }
 
     public void endLoop()
     {
-        audioPlayer.loop = false;
+        player.loop = false;
     }
 
     public bool getClipStatus()
     {
-        if(audioPlayer.isPlaying)
+        if(player.isPlaying)
         {
             return false;
         } else
@@ -81,8 +71,10 @@ public class MusicController : MonoBehaviour
     public void updateVolume(float newVolume)
     {
         volume = newVolume;
-        currentVolume = newVolume;
-        audioPlayer.volume = volume;
+        player.volume = volume;
+        float volumeText = newVolume * 10;
+        int volumeTextInt = (int)volumeText;
+        musicVolumeText.updateText(volumeTextInt.ToString());
     }
 
     public bool isClipPlaying(string clip)
@@ -99,11 +91,49 @@ public class MusicController : MonoBehaviour
     public void fadeInClip(string clip)
     {
         loopClip(clip);
-        isFading = true;
-        currentVolume = 0f;
     }
 
     public ClipScript getCurrentClip() {
         return currentClip;
+    }
+
+    public void crossFadeClip(string clip) {
+        StopAllCoroutines();
+
+        StartCoroutine(FadeTrack(clip));
+
+        isPlaying1 = !isPlaying1;
+    }
+
+    private IEnumerator FadeTrack(string clip) {
+        float timeToFade = 3f;
+        float timeElapsed = 0f;
+
+        if(isPlaying1){
+            player = audioPlayer2;
+            loopClip(clip);
+
+            while(timeElapsed < timeToFade) {
+                audioPlayer2.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
+                audioPlayer1.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            audioPlayer1.Stop();
+            
+        } else {
+            player = audioPlayer1;
+            loopClip(clip);
+
+            while(timeElapsed < timeToFade) {
+                audioPlayer1.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
+                audioPlayer2.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            audioPlayer2.Stop();
+        }
     }
 }

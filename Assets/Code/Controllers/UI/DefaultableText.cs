@@ -8,13 +8,15 @@ public class DefaultableText : MonoBehaviour
     private Text myText;
     private string myTextDefaultString;
 
-    void Start()
+    void Awake()
     {
         myText = GetComponent<Text>();
         myTextDefaultString = myText.text;
     }
 
     public void updateText(string newText) {
-        myText.text = myTextDefaultString + newText;
+        if(myText.IsActive()) {
+            myText.text = myTextDefaultString + newText;
+        }
     }
 }
