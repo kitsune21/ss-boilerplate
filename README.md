@@ -14,7 +14,7 @@ This is the ScriptableObject for soundfx and songs. Simply give it a name and an
 This Game Controller handles the sound fx. It has a list of ClipScripts. You just need to call the playEffect() function and as long as their is a ClipScript (from the list) that has a name that matches it will play the effect. It will scale up the number of audio sources to match the number of effects that need to be played.
 
 # Music Controller
-This Game Controller handles the music. To play a clip you can call loopClip() or fadeInClip(), depending on your needs. The stopClip() and endLoop() functions are also available.
+This Game Controller handles the music. To play a clip you can call loopClip() or crossFadeClip(), depending on your needs. The stopClip() and endLoop() functions are also available.
 
 # UI Prefabs
 
