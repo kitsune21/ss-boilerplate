@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b09bd658cd0f3a4c8834a2aa5e12d7b, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  sentences:
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua.
+  - Posuere morbi leo urna molestie.
+  - Aenean vel elit scelerisque mauris pellentesque pulvinar.
+  - Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Varius morbi
+    enim nunc faucibus a.
+  responses: []
+  type: 0
+  characterName: Joe Mama
+  portrait: {fileID: 0}

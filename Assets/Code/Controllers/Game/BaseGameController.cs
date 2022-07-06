@@ -10,6 +10,7 @@ public class BaseGameController : MonoBehaviour
     public GameObject inGameMenuPanel;
     private void Awake() {
         controller = new TopDownPlayerController();
+        inGameMenuPanel.SetActive(true);
     }
 
     void Start() {

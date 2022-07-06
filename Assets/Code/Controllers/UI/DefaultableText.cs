@@ -15,8 +15,6 @@ public class DefaultableText : MonoBehaviour
     }
 
     public void updateText(string newText) {
-        if(myText.IsActive()) {
-            myText.text = myTextDefaultString + newText;
-        }
+        myText.text = myTextDefaultString + newText;
     }
 }
