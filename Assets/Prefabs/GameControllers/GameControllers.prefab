@@ -43,6 +43,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d10afc2f31b2d45b1c1e406c49e019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &939958346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939958347}
+  - component: {fileID: 2100555202453254770}
+  m_Layer: 0
+  m_Name: CameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &939958347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939958346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4892655849096017582}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100555202453254770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939958346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00356c47eaba10541bf3b7a565596388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!1 &1308594518
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,8 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
+  responseBox: {fileID: 0}
+  responseButton: {fileID: 8180714779217576484, guid: ab3164f6a806615459c8a4cc46b48c90, type: 3}
   characterNameText: {fileID: 0}
   dialougeText: {fileID: 0}
+  continueText: {fileID: 0}
+  typingSpeed: 0.005
 --- !u!1 &1481458639
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +215,7 @@ Transform:
   - {fileID: 1481458640}
   - {fileID: 391555426}
   - {fileID: 1308594519}
+  - {fileID: 939958347}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -186,6 +235,7 @@ MonoBehaviour:
   bgc: {fileID: 1481458641}
   mc: {fileID: 4317165675699727801}
   sc: {fileID: 4317165677349564484}
+  dm: {fileID: 0}
 --- !u!1001 &226357710675276353
 PrefabInstance:
   m_ObjectHideFlags: 0

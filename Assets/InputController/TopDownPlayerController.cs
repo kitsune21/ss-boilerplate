@@ -151,6 +151,42 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""63cfa266-d7ef-42f2-af42-2b1715b5871d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectDialogue1"",
+                    ""type"": ""Button"",
+                    ""id"": ""d26435af-c39a-4aac-8ac2-c8f0c71df7e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectDialogue2"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccb1bba5-bb10-493b-88c3-eec4a85a7907"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectDialogue3"",
+                    ""type"": ""Button"",
+                    ""id"": ""97de491f-b2b4-420c-a2b2-a30693b7565d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -162,6 +198,50 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenCloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23e04803-f89f-4c28-bd46-0896e3329dae"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e147f10-79c3-4b8f-9690-c9e85df1942d"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""383da78c-4ed8-492f-9f4c-1599fa4543e0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f17ecbd2-7328-4cfe-bf80-1db0327fb12b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectDialogue3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -176,6 +256,10 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_OpenCloseMenu = m_Menu.FindAction("OpenCloseMenu", throwIfNotFound: true);
+        m_Menu_NextDialogue = m_Menu.FindAction("NextDialogue", throwIfNotFound: true);
+        m_Menu_SelectDialogue1 = m_Menu.FindAction("SelectDialogue1", throwIfNotFound: true);
+        m_Menu_SelectDialogue2 = m_Menu.FindAction("SelectDialogue2", throwIfNotFound: true);
+        m_Menu_SelectDialogue3 = m_Menu.FindAction("SelectDialogue3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -269,11 +353,19 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_OpenCloseMenu;
+    private readonly InputAction m_Menu_NextDialogue;
+    private readonly InputAction m_Menu_SelectDialogue1;
+    private readonly InputAction m_Menu_SelectDialogue2;
+    private readonly InputAction m_Menu_SelectDialogue3;
     public struct MenuActions
     {
         private @TopDownPlayerController m_Wrapper;
         public MenuActions(@TopDownPlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @OpenCloseMenu => m_Wrapper.m_Menu_OpenCloseMenu;
+        public InputAction @NextDialogue => m_Wrapper.m_Menu_NextDialogue;
+        public InputAction @SelectDialogue1 => m_Wrapper.m_Menu_SelectDialogue1;
+        public InputAction @SelectDialogue2 => m_Wrapper.m_Menu_SelectDialogue2;
+        public InputAction @SelectDialogue3 => m_Wrapper.m_Menu_SelectDialogue3;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +378,18 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @OpenCloseMenu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
                 @OpenCloseMenu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
                 @OpenCloseMenu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCloseMenu;
+                @NextDialogue.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNextDialogue;
+                @NextDialogue.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNextDialogue;
+                @NextDialogue.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNextDialogue;
+                @SelectDialogue1.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue1;
+                @SelectDialogue1.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue1;
+                @SelectDialogue1.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue1;
+                @SelectDialogue2.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue2;
+                @SelectDialogue2.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue2;
+                @SelectDialogue2.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue2;
+                @SelectDialogue3.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
+                @SelectDialogue3.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
+                @SelectDialogue3.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +397,18 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @OpenCloseMenu.started += instance.OnOpenCloseMenu;
                 @OpenCloseMenu.performed += instance.OnOpenCloseMenu;
                 @OpenCloseMenu.canceled += instance.OnOpenCloseMenu;
+                @NextDialogue.started += instance.OnNextDialogue;
+                @NextDialogue.performed += instance.OnNextDialogue;
+                @NextDialogue.canceled += instance.OnNextDialogue;
+                @SelectDialogue1.started += instance.OnSelectDialogue1;
+                @SelectDialogue1.performed += instance.OnSelectDialogue1;
+                @SelectDialogue1.canceled += instance.OnSelectDialogue1;
+                @SelectDialogue2.started += instance.OnSelectDialogue2;
+                @SelectDialogue2.performed += instance.OnSelectDialogue2;
+                @SelectDialogue2.canceled += instance.OnSelectDialogue2;
+                @SelectDialogue3.started += instance.OnSelectDialogue3;
+                @SelectDialogue3.performed += instance.OnSelectDialogue3;
+                @SelectDialogue3.canceled += instance.OnSelectDialogue3;
             }
         }
     }
@@ -304,5 +420,9 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
     public interface IMenuActions
     {
         void OnOpenCloseMenu(InputAction.CallbackContext context);
+        void OnNextDialogue(InputAction.CallbackContext context);
+        void OnSelectDialogue1(InputAction.CallbackContext context);
+        void OnSelectDialogue2(InputAction.CallbackContext context);
+        void OnSelectDialogue3(InputAction.CallbackContext context);
     }
 }

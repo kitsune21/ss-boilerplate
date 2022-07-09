@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class BaseGameController : MonoBehaviour
 {
-    public SystemsController systems;
+    private SystemsController systems;
     private TopDownPlayerController controller;
     public GameObject inGameMenuPanel;
     private void Awake() {
+        systems = SystemsController.systemInstance;
         controller = new TopDownPlayerController();
         inGameMenuPanel.SetActive(true);
     }

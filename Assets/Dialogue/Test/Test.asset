@@ -13,13 +13,8 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   sentences:
-  - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua.
-  - Posuere morbi leo urna molestie.
-  - Aenean vel elit scelerisque mauris pellentesque pulvinar.
-  - Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Varius morbi
-    enim nunc faucibus a.
-  responses: []
-  type: 0
+  - {fileID: 11400000, guid: 6d4bf57c401e46f48b466959239df146, type: 2}
+  - {fileID: 11400000, guid: 1deb838b142b9fa43a1b21bc95cc2107, type: 2}
+  - {fileID: 11400000, guid: 6b284f57b02b0bc4abd342dc5f6c85a7, type: 2}
   characterName: Joe Mama
   portrait: {fileID: 0}

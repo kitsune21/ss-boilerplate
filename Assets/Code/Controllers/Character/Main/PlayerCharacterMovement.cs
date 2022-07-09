@@ -5,14 +5,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
+    private Player player;
     private Rigidbody2D rb;
     private TopDownPlayerController topDownController;
     private InputAction movement;
     public float moveSpeed = 5f;
 
     private void Awake() {
-        topDownController = new TopDownPlayerController();
-        rb = GetComponent<Rigidbody2D>();
+      player = Player.playerInstance;
+      topDownController = new TopDownPlayerController();
+      rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable() {
@@ -25,7 +27,9 @@ public class PlayerCharacterMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-      rb.MovePosition(rb.position + movement.ReadValue<Vector2>() * moveSpeed * Time.fixedDeltaTime);
+      if(player.sc.gsm.getState() != GameStates.GamePaused) {
+        rb.MovePosition(rb.position + movement.ReadValue<Vector2>() * moveSpeed * Time.fixedDeltaTime);
+      }
     }
 
     public Vector2 getMovement() {
