@@ -26,4 +26,8 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.Play(currentState.ToString());
     }
+
+    public CharStates getState() {
+        return currentState;
+    }
 }
