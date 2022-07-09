@@ -19,13 +19,13 @@ This Game Controller handles the music. To play a clip you can call loopClip() o
 # Dialogue Manager
 This is only a basic dialogue system. It doesn't handling branching dialogue. Only simple 3 response maximum questions. To use this you need to: 
 1. Create a "Dialogue" sciptable object (should be in the "Dialogues" folder for organization). 
-  -Give it a name
-  -Assign a character name 
+  - Give it a name
+  - Assign a character name 
 2. Then create "Dialogue Sentence" scriptable objects, one per sentence.
-  -Assign it a type (statement for just simple sentences, question if it can have a response)
-  -The "sentence" attribute will always display first
-  -If it is a question it will then show buttons below the sentence using the text from the questions[] attribute
-    -Responses will be displayed when any of the question boxes are selected
+  - Assign it a type (statement for just simple sentences, question if it can have a response)
+  - The "sentence" attribute will always display first
+  - If it is a question it will then show buttons below the sentence using the text from the questions[] attribute
+    - Responses will be displayed when any of the question boxes are selected
 3. After creating the dialogue, you just need to call the loadDialogue() funtion from the systemsController instance.
 
 # UI Prefabs
