@@ -36,7 +36,7 @@ public class CameraCont : MonoBehaviour
         }
     }
 
-    public void shakeTest() {
-        cameraShaker.InduceStress(0.1f);
+    public void cameraShake(float intensity = 1f) {
+        cameraShaker.InduceStress(intensity);
     }
 }

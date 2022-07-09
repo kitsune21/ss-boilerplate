@@ -1,22 +1,25 @@
 # ss-boilerplate
 My own boilerplate for Unity Projects, with prefabs, and generic controllers already built (such as music, sound, character, etc).
 
-# Character Controllers
+
+## Character Controllers
 Default player character controllers.
 
-## TopDown
+# TopDown
 This is for Zelda-like movement.
 
-# Clip Script
+# System Controllers
+
+## Clip Script
 This is the ScriptableObject for soundfx and songs. Simply give it a name and an auido clip and the sound and music controllers can handle the rest.
 
-# Sound Controller
+## Sound Controller
 This Game Controller handles the sound fx. It has a list of ClipScripts. You just need to call the playEffect() function and as long as their is a ClipScript (from the list) that has a name that matches it will play the effect. It will scale up the number of audio sources to match the number of effects that need to be played.
 
-# Music Controller
+## Music Controller
 This Game Controller handles the music. To play a clip you can call loopClip() or crossFadeClip(), depending on your needs. The stopClip() and endLoop() functions are also available.
 
-# Dialogue Manager
+## Dialogue Manager
 This is only a basic dialogue system. It doesn't handling branching dialogue. Only simple 3 response maximum questions. To use this you need to: 
 1. Create a "Dialogue" sciptable object (should be in the "Dialogues" folder for organization). 
   - Give it a name
@@ -27,6 +30,9 @@ This is only a basic dialogue system. It doesn't handling branching dialogue. On
   - If it is a question it will then show buttons below the sentence using the text from the questions[] attribute
     - Responses will be displayed when any of the question boxes are selected
 3. After creating the dialogue, you just need to call the loadDialogue() funtion from the systemsController instance.
+
+## Camera Controller
+Will follow the player around. Can call the cameraShake() function to shake the camera.
 
 # UI Prefabs
 
