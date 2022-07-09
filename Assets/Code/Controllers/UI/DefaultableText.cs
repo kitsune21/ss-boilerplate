@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DefaultableText : MonoBehaviour
 {
-    private Text myText;
+    private TMP_Text myText;
     private string myTextDefaultString;
 
     void Awake()
     {
-        myText = GetComponent<Text>();
+        myText = GetComponent<TMP_Text>();
         myTextDefaultString = myText.text;
     }
 
