@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 8014615072218923563}
   - component: {fileID: 8014615072218923562}
   - component: {fileID: 1014193296}
+  - component: {fileID: 211278102}
   m_Layer: 0
   m_Name: TopDownPlayerCharacter
   m_TagString: Untagged
@@ -158,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8014615072218923560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,3 +210,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sc: {fileID: 0}
+--- !u!70 &211278102
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014615072218923567}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.202795}
+  m_Size: {x: 0.5, y: 0.59441}
+  m_Direction: 0
