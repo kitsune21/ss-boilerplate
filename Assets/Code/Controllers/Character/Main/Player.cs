@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     public static Player playerInstance;
     public SystemsController sc;
-    private PlayerCharacterMovement pcm; 
-    private PlayerStateMachine psm;
-    private PlayerAnimationController pac;
+    public PlayerCharacterMovement pcm; 
+    public PlayerStateMachine psm;
+    public PlayerAnimationController pac;
 
     void Awake() {
         if(playerInstance != null && playerInstance != this) {

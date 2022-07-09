@@ -11,10 +11,13 @@ public class PlayerCharacterMovement : MonoBehaviour
     private InputAction movement;
     public float moveSpeed = 5f;
 
-    private void Awake() {
-      player = Player.playerInstance;
+    void Awake() {
       topDownController = new TopDownPlayerController();
       rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start() {
+      player = Player.playerInstance;
     }
 
     private void OnEnable() {
