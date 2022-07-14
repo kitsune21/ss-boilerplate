@@ -9,7 +9,8 @@ public class SystemsController : MonoBehaviour
     public BaseGameController bgc;
     public MusicController mc;
     public SoundController sc;
-    public DialougeManager dm;
+    public DialogueManager dm;
+    public CameraCont cc;
     public Player player;
 
     void Awake() {
