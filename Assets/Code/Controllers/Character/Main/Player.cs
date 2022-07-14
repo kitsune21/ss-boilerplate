@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerCharacterMovement pcm; 
     public PlayerStateMachine psm;
     public PlayerAnimationController pac;
+    public PlayerInventory pi;
 
     void Awake() {
         if(playerInstance != null && playerInstance != this) {
