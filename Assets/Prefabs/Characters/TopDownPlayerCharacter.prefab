@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 234066777552620167}
   m_Layer: 0
   m_Name: TopDownPlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   pcm: {fileID: 8014615072218923560}
   psm: {fileID: 8014615072218923563}
   pac: {fileID: 8014615072218923562}
-  pi: {fileID: 0}
+  pi: {fileID: 234066777552620167}
 --- !u!70 &211278102
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

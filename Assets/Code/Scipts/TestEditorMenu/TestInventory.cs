@@ -9,7 +9,6 @@ public class TestInventory
     [MenuItem("Test/Inventory/Add Sword")]
     public static void testAddSword() {
         Item newItem = ScriptableObject.CreateInstance<Item>();
-
         newItem.id = 2;
         newItem.name = "Sword";
         newItem.description = "The master sword to seal away evil.";
@@ -17,37 +16,45 @@ public class TestInventory
         newItem.maxStack = 1;
         newItem.type = ItemTypes.unique;
 
-        Player.playerInstance.pi.addItemToInventory(newItem);
+        ItemInstance newItemInstance = ScriptableObject.CreateInstance<ItemInstance>();
+        newItemInstance.myItem = newItem;
+        newItemInstance.quantity = 1;
+
+        Player.playerInstance.pi.addItemToInventory(newItemInstance);
     }
 
     [MenuItem("Test/Inventory/Add 1 Coins")]
     public static void testAdd1Coins() {
         Item newItem = ScriptableObject.CreateInstance<Item>();
-
         newItem.id = 3;
         newItem.name = "Coin";
         newItem.description = "Just a gold coin.";
         newItem.stackable = true;
         newItem.maxStack = 6;
         newItem.type = ItemTypes.currency;
-        newItem.quantity = 1;
 
-        Player.playerInstance.pi.addItemToInventory(newItem);
+        ItemInstance newItemInstance = ScriptableObject.CreateInstance<ItemInstance>();
+        newItemInstance.myItem = newItem;
+        newItemInstance.quantity = 1;
+
+        Player.playerInstance.pi.addItemToInventory(newItemInstance);
     }
 
     [MenuItem("Test/Inventory/Add 5 Coins")]
     public static void testAdd5Coins() {
         Item newItem = ScriptableObject.CreateInstance<Item>();
-
         newItem.id = 3;
         newItem.name = "Coin";
         newItem.description = "Just a gold coin.";
         newItem.stackable = true;
         newItem.maxStack = 6;
         newItem.type = ItemTypes.currency;
-        newItem.quantity = 5;
 
-        Player.playerInstance.pi.addItemToInventory(newItem);
+        ItemInstance newItemInstance = ScriptableObject.CreateInstance<ItemInstance>();
+        newItemInstance.myItem = newItem;
+        newItemInstance.quantity = 5;
+
+        Player.playerInstance.pi.addItemToInventory(newItemInstance);
     }
 
     [MenuItem("Test/Inventory/Log Inventory")]
