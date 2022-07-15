@@ -5,45 +5,50 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private List<InventoryEntry> inventory = new List<InventoryEntry>();
+    [SerializeField]
+    private InventoryDisplay inventoryDisplay;
 
-    public void addItemToInventory(Item newItem) {
+    public void addItemToInventory(ItemInstance itemInstance) {
         
-        if(newItem.stackable) {
+        if(itemInstance.myItem.stackable) {
             bool added = false;
             int amountLeft = 0;
             InventoryEntry addWithLeftover = null;
             foreach(InventoryEntry entry in inventory) {
-                if(entry.MyItem.id == newItem.id) {
+                if(entry.MyItem.id == itemInstance.myItem.id) {
                     if(entry.CurrentAmount < entry.MyItem.maxStack) {
-                        if(entry.CurrentAmount + newItem.quantity <= entry.MyItem.maxStack) {
-                            entry.CurrentAmount += newItem.quantity;
+                        if(entry.CurrentAmount + itemInstance.quantity <= entry.MyItem.maxStack) {
+                            entry.CurrentAmount += itemInstance.quantity;
+                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
                             added = true;
                             return;
-                        } else if(entry.CurrentAmount + newItem.quantity > entry.MyItem.maxStack) {
-                            amountLeft = entry.CurrentAmount + newItem.quantity - entry.MyItem.maxStack;
+                        } else if(entry.CurrentAmount + itemInstance.quantity > entry.MyItem.maxStack) {
+                            amountLeft = entry.CurrentAmount + itemInstance.quantity - entry.MyItem.maxStack;
                             entry.CurrentAmount = entry.MyItem.maxStack;
-                            newItem.quantity = amountLeft;
-                            addWithLeftover = createEntry(newItem);
+                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
+                            itemInstance.quantity = amountLeft;
+                            addWithLeftover = createEntry(itemInstance);
                             added = true;
                         }
                     }
                 } 
             }
             if(!added) {
-                inventory.Add(createEntry(newItem));
+                inventory.Add(createEntry(itemInstance));
             }
             if(addWithLeftover != null) {
                 inventory.Add(addWithLeftover);
             }
         } else {
-            inventory.Add(createEntry(newItem));
+            inventory.Add(createEntry(itemInstance));
         }
     }
 
-    private InventoryEntry createEntry(Item newItem) {
+    private InventoryEntry createEntry(ItemInstance itemInstance) {
         InventoryEntry newEntry = new InventoryEntry();
-        newEntry.MyItem = newItem;
-        newEntry.CurrentAmount = newItem.quantity;
+        newEntry.MyItem = itemInstance.myItem;
+        newEntry.CurrentAmount = itemInstance.quantity;
+        newEntry.MyInventoryEntry = inventoryDisplay.addItemToInventoryDisplay(itemInstance);
         return newEntry;
     }
 

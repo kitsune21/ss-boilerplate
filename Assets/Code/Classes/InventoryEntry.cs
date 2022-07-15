@@ -8,4 +8,6 @@ public class InventoryEntry
     public Item MyItem { get; set; }
     private int currentAmount;
     public int CurrentAmount { get; set; }
+    private GameObject myInventoryEntry;
+    public GameObject MyInventoryEntry { get; set; }
 }

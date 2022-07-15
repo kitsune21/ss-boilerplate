@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "Item")]
+[CreateAssetMenu(fileName = "NewItem", menuName = "Item/Item")]
 public class Item : ScriptableObject
 {
     public int id;
@@ -12,7 +12,6 @@ public class Item : ScriptableObject
     public ItemTypes type;
     public bool stackable;
     public int maxStack;
-    public int quantity;
     public Sprite uiImage;
     public Sprite gameImage;
 }
