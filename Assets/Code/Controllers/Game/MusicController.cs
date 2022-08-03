@@ -7,21 +7,19 @@ public class MusicController : MonoBehaviour
     private AudioSource audioPlayer1;
     private AudioSource audioPlayer2;
     private AudioSource player;
-    public float volume;
+    private float volume;
     private bool isPlaying1;
-
-    public List<ClipScript> songs = new List<ClipScript>();
-    private ClipScript currentClip;
-
-    public DefaultableText musicVolumeText;
+    [SerializeField] private List<ClipScript> songs = new List<ClipScript>();
+    public ClipScript CurrentClip { get; private set; }
+    [SerializeField] private DefaultableText musicVolumeText;
     
     void Start()
     {
         audioPlayer1 = gameObject.AddComponent<AudioSource>();
         audioPlayer2 = gameObject.AddComponent<AudioSource>();
         player = audioPlayer1;
-        loopClip("menu");
-        musicVolumeText.updateText("10");
+        LoopClip("menu");
+        musicVolumeText.UpdateText("10");
         isPlaying1 = true;
     }
 
@@ -30,7 +28,7 @@ public class MusicController : MonoBehaviour
     {
         foreach(ClipScript song in songs)
         {
-            if(song.clipName == clip)
+            if(song.ClipName == clip)
             {
                 return song;
             }
@@ -39,65 +37,29 @@ public class MusicController : MonoBehaviour
         return null;
     }
 
-    public void loopClip(string clip)
+    public void LoopClip(string clip)
     {
-        currentClip = stringToClip(clip);
-        player.clip = currentClip.clip;
+        CurrentClip = stringToClip(clip);
+        player.clip = CurrentClip.Clip;
         player.loop = true;
         player.Play();
     }
 
-    public void stopClip()
+    public void StopClip()
     {
         player.Stop();
     }
 
-    public void endLoop()
-    {
-        player.loop = false;
-    }
-
-    public bool getClipStatus()
-    {
-        if(player.isPlaying)
-        {
-            return false;
-        } else
-        {
-            return true;
-        }
-    }
-
-    public void updateVolume(float newVolume)
+    public void UpdateVolume(float newVolume)
     {
         volume = newVolume;
         player.volume = volume;
         float volumeText = newVolume * 10;
         int volumeTextInt = (int)volumeText;
-        musicVolumeText.updateText(volumeTextInt.ToString());
+        musicVolumeText.UpdateText(volumeTextInt.ToString());
     }
 
-    public bool isClipPlaying(string clip)
-    {
-        if(clip == currentClip.clipName)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
-    }
-
-    public void fadeInClip(string clip)
-    {
-        loopClip(clip);
-    }
-
-    public ClipScript getCurrentClip() {
-        return currentClip;
-    }
-
-    public void crossFadeClip(string clip) {
+    public void CrossFadeClip(string clip) {
         StopAllCoroutines();
 
         StartCoroutine(FadeTrack(clip));
@@ -111,7 +73,7 @@ public class MusicController : MonoBehaviour
 
         if(isPlaying1){
             player = audioPlayer2;
-            loopClip(clip);
+            LoopClip(clip);
 
             while(timeElapsed < timeToFade) {
                 audioPlayer2.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
@@ -124,7 +86,7 @@ public class MusicController : MonoBehaviour
             
         } else {
             player = audioPlayer1;
-            loopClip(clip);
+            LoopClip(clip);
 
             while(timeElapsed < timeToFade) {
                 audioPlayer1.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
@@ -135,5 +97,9 @@ public class MusicController : MonoBehaviour
 
             audioPlayer2.Stop();
         }
+    }
+
+    public List<ClipScript> getSongs() {
+        return songs;
     }
 }

@@ -9,10 +9,6 @@ public class CountdownSlider : MonoBehaviour
     private bool isAppreciating;
     private bool isDepreciating;
     private bool resetOnCompletion;
-
-    public Color startColor;
-    public Color endColor;
-    public Image backGroundColor;
     void Start()
     {
         slider = GetComponent<Slider>();
@@ -62,13 +58,13 @@ public class CountdownSlider : MonoBehaviour
 
     //---------------------------------------------------Public Methods---------------------------------------------//
 
-    public void startAppreciating(bool reset = false) {
+    public void StartAppreciating(bool reset = false) {
         isAppreciating = true;
         isDepreciating = false;
         resetOnCompletion = reset;
     }
 
-    public void startDepreciating(bool reset = false) {
+    public void StartDepreciating(bool reset = false) {
         isAppreciating = false;
         isDepreciating = true;
         resetOnCompletion = reset;

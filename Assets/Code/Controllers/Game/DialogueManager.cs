@@ -9,14 +9,14 @@ public class DialogueManager : MonoBehaviour
 {
     private SystemsController sc;
     private Queue<DialogueSentence> sentences;
-    public GameObject dialogueBox;
-    public GameObject responseBox;
-    public GameObject responseButton;
-    public TMP_Text characterNameText;
-    public TMP_Text dialougeText;
-    public GameObject continueText;
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject responseBox;
+    [SerializeField] private GameObject responseButton;
+    [SerializeField] private TMP_Text characterNameText;
+    [SerializeField] private TMP_Text dialougeText;
+    [SerializeField] private GameObject continueText;
     private Animator anim;
-    public float typingSpeed;
+    [SerializeField] private float typingSpeed;
     private TopDownPlayerController controller;
     private DialogueSentence currentSentence;
     private List<GameObject> responseButtons;
@@ -26,11 +26,11 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<DialogueSentence>();
         anim = dialogueBox.GetComponent<Animator>();
         controller = new TopDownPlayerController();
-        sc = SystemsController.systemInstance;
+        sc = SystemsController.Instance;
         responseButtons = new List<GameObject>();
     }
 
-    private void OnEnable() {
+    void OnEnable() {
       controller.Menu.NextDialogue.performed += displayNextSentenceOnAction;
       controller.Menu.NextDialogue.Enable();
       controller.Menu.SelectDialogue1.performed += selectResponse1;
@@ -41,49 +41,50 @@ public class DialogueManager : MonoBehaviour
       controller.Menu.SelectDialogue3.Enable();
     }
 
-    private void displayNextSentenceOnAction(InputAction.CallbackContext obj) {{
-        displayNextSentence();
-    }}
-
-    private void selectResponse1(InputAction.CallbackContext obj) {{
-        if(currentSentence.type == DialogueType.question) {
-            responseButtonClicked(0);
-        }
-    }}
-
-    private void selectResponse2(InputAction.CallbackContext obj) {{
-        if(currentSentence.type == DialogueType.question) {
-            responseButtonClicked(1);
-        }
-    }}
-
-    private void selectResponse3(InputAction.CallbackContext obj) {{
-        if(currentSentence.type == DialogueType.question) {
-            responseButtonClicked(2);
-        }
-    }}
-
-    private void OnDisable() {
+    void OnDisable() {
         controller.Menu.OpenCloseMenu.Disable();
         controller.Menu.SelectDialogue1.Disable();
         controller.Menu.SelectDialogue2.Disable();
         controller.Menu.SelectDialogue3.Disable();
     }
 
-    public void loadDialogue(Dialouge dialouge) {
-        sc.gsm.setStateGamePaused();
+    private void displayNextSentenceOnAction(InputAction.CallbackContext obj) {{
+        displayNextSentence();
+    }}
+
+    private void selectResponse1(InputAction.CallbackContext obj) {{
+        if(currentSentence.Type == DialogueType.question) {
+            responseButtonClicked(0);
+        }
+    }}
+
+    private void selectResponse2(InputAction.CallbackContext obj) {{
+        if(currentSentence.Type == DialogueType.question) {
+            responseButtonClicked(1);
+        }
+    }}
+
+    private void selectResponse3(InputAction.CallbackContext obj) {{
+        if(currentSentence.Type == DialogueType.question) {
+            responseButtonClicked(2);
+        }
+    }}
+
+
+    public void LoadDialogue(Dialouge dialouge) {
+        sc.State.UpdateGameState(GameStates.GamePaused);
         anim.SetBool("isShow", true);
         sentences.Clear();
-        foreach(DialogueSentence sentence in dialouge.sentences) {
+        foreach(DialogueSentence sentence in dialouge.Sentences) {
             sentences.Enqueue(sentence);
         }
 
-        characterNameText.text = dialouge.characterName;
+        characterNameText.text = dialouge.CharacterName;
 
         displayNextSentence();
     }
 
-    public void displayNextSentence() {
+    private void displayNextSentence() {
         if(sentences.Count == 0) {
             endDialogue();
             return;
@@ -91,8 +92,8 @@ public class DialogueManager : MonoBehaviour
 
         currentSentence = sentences.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(writeSentence(currentSentence.sentence));
-        if(currentSentence.type == DialogueType.question) {
+        StartCoroutine(writeSentence(currentSentence.Sentence));
+        if(currentSentence.Type == DialogueType.question) {
             showResponses(currentSentence);
         } else {
             if(!continueText.activeSelf) {
@@ -104,7 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     private void endDialogue() {
         anim.SetBool("isShow", false);
-        sc.gsm.setStateInGame();
+        sc.State.UpdateGameState(GameStates.InGame);
     }
 
     private IEnumerator writeSentence(string sentence) {
@@ -119,20 +120,20 @@ public class DialogueManager : MonoBehaviour
     private void showResponses(DialogueSentence currentSentence) {
         continueText.SetActive(false);
         responseBox.SetActive(true);
-        for(int i = 0; i < currentSentence.questions.Length; i++) {
+        for(int i = 0; i < currentSentence.Questions.Length; i++) {
             GameObject responseButt = Instantiate(responseButton, transform.position, transform.rotation, responseBox.transform);
-            responseButt.GetComponent<DialogueResponseButton>().setResponseText(currentSentence.questions[i], i);
+            responseButt.GetComponent<DialogueResponseButton>().setResponseText(currentSentence.Questions[i], i);
             responseButt.GetComponent<Button>().onClick.AddListener(delegate {responseButtonClicked(responseButt.GetComponent<DialogueResponseButton>().getIndex()); });
             responseButtons.Add(responseButt);
         }
     }
 
-    public void responseButtonClicked(int index) {
+    private void responseButtonClicked(int index) {
         continueText.SetActive(true);
         responseBox.SetActive(false);
         clearButtons();
         StopAllCoroutines();
-        StartCoroutine(writeSentence(currentSentence.responses[index]));
+        StartCoroutine(writeSentence(currentSentence.Responses[index]));
     }
 
     private void clearButtons() {

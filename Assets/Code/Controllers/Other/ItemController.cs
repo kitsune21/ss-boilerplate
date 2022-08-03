@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField]
-    private ItemInstance myItemInstance;
+    [SerializeField] private ItemInstance myItemInstance;
 
     void Start() {
-        gameObject.GetComponent<SpriteRenderer>().sprite = myItemInstance.myItem.gameImage;
+        gameObject.GetComponent<SpriteRenderer>().sprite = myItemInstance.MyItem.GameImage;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
-            Player.playerInstance.pi.addItemToInventory(myItemInstance);
+            Player.Instance.Inventory.AddItemToInventory(myItemInstance);
             Destroy(gameObject);
         }
     }

@@ -5,5 +5,9 @@ public enum GameStates
 {
     MainMenu,
     InGame,
-    GamePaused
+    InMenu,
+    GamePaused,
+    PlayerDied,
+    GameOver,
+    Victory
 }

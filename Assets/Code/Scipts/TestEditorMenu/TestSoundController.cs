@@ -7,6 +7,6 @@ public class TestSoundController
 {
     [MenuItem("Test/Sound/Play Random Sound")]
     public static void playRandomSound() {
-        SystemsController.systemInstance.sc.playRandomSound();
+        //SystemsController.Instance.Sound.playRandomSound();
     }
 }

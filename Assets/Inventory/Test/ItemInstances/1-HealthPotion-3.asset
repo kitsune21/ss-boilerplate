@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fab7f8d79e8a434ea6abd38a170eb52, type: 3}
   m_Name: 1-HealthPotion-3
   m_EditorClassIdentifier: 
-  id: 1
-  myItem: {fileID: 11400000, guid: 8b6bf0335dd21b646ad8061b00227c7c, type: 2}
-  quantity: 3
+  Id: 1
+  MyItem: {fileID: 11400000, guid: 8b6bf0335dd21b646ad8061b00227c7c, type: 2}
+  Quantity: 3

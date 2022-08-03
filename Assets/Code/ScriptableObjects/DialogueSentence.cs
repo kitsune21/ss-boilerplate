@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class DialogueSentence : ScriptableObject
 {
-    public int id;
-    public DialogueType type;
+    public int Id;
+    public DialogueType Type;
     [TextArea(3,10)]
-    public string sentence;
-    public string[] questions;
+    public string Sentence;
+    public string[] Questions;
     [TextArea(3,10)]
-    public string[] responses;
+    public string[] Responses;
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewConversation", menuName = "Dialogue/Main")]
 public class Dialouge : ScriptableObject
 {
-    public DialogueSentence[] sentences;
-    public string characterName;
-    public Sprite portrait;
+    public DialogueSentence[] Sentences;
+    public string CharacterName;
+    public Sprite Portrait;
 }

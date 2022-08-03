@@ -9,15 +9,17 @@ public class PlayerCharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
     private TopDownPlayerController topDownController;
     private InputAction movement;
-    public float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
+    private SystemsController systems;
 
     void Awake() {
       topDownController = new TopDownPlayerController();
       rb = GetComponent<Rigidbody2D>();
+      systems = SystemsController.Instance;
     }
 
     void Start() {
-      player = Player.playerInstance;
+      player = Player.Instance;
     }
 
     private void OnEnable() {
@@ -30,12 +32,12 @@ public class PlayerCharacterMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-      if(player.sc.gsm.getState() != GameStates.GamePaused) {
+      if(systems.State.CurrentState == GameStates.InGame) {
         rb.MovePosition(rb.position + movement.ReadValue<Vector2>() * moveSpeed * Time.fixedDeltaTime);
       }
     }
 
-    public Vector2 getMovement() {
+    public Vector2 GetMovement() {
       return movement.ReadValue<Vector2>();
     }
 }

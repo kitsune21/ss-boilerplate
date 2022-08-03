@@ -6,12 +6,11 @@ using TMPro;
 
 public class InventoryDisplay : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject itemPanel;
+    [SerializeField] private GameObject itemPanel;
 
-    public GameObject addItemToInventoryDisplay(ItemInstance itemToAdd) {
+    public GameObject AddItemToInventoryDisplay(ItemInstance itemToAdd) {
         GameObject panelToAdd = Instantiate(itemPanel, transform.position, transform.rotation, transform);
-        panelToAdd.GetComponent<ItemPanel>().updateTextAndImage(itemToAdd);
+        panelToAdd.GetComponent<ItemPanel>().UpdateTextAndImage(itemToAdd);
         return panelToAdd;
     }
 }

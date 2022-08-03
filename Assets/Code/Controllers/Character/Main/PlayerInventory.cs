@@ -5,28 +5,27 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private List<InventoryEntry> inventory = new List<InventoryEntry>();
-    [SerializeField]
-    private InventoryDisplay inventoryDisplay;
+    [SerializeField] private InventoryDisplay inventoryDisplay;
 
-    public void addItemToInventory(ItemInstance itemInstance) {
+    public void AddItemToInventory(ItemInstance itemInstance) {
         
-        if(itemInstance.myItem.stackable) {
+        if(itemInstance.MyItem.Stackable) {
             bool added = false;
             int amountLeft = 0;
             InventoryEntry addWithLeftover = null;
             foreach(InventoryEntry entry in inventory) {
-                if(entry.MyItem.id == itemInstance.myItem.id) {
-                    if(entry.CurrentAmount < entry.MyItem.maxStack) {
-                        if(entry.CurrentAmount + itemInstance.quantity <= entry.MyItem.maxStack) {
-                            entry.CurrentAmount += itemInstance.quantity;
-                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
+                if(entry.MyItem.Id == itemInstance.MyItem.Id) {
+                    if(entry.CurrentAmount < entry.MyItem.MaxStack) {
+                        if(entry.CurrentAmount + itemInstance.Quantity <= entry.MyItem.MaxStack) {
+                            entry.CurrentAmount += itemInstance.Quantity;
+                            entry.MyInventoryEntry.GetComponent<ItemPanel>().UpdateText(entry.CurrentAmount);
                             added = true;
                             return;
-                        } else if(entry.CurrentAmount + itemInstance.quantity > entry.MyItem.maxStack) {
-                            amountLeft = entry.CurrentAmount + itemInstance.quantity - entry.MyItem.maxStack;
-                            entry.CurrentAmount = entry.MyItem.maxStack;
-                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
-                            itemInstance.quantity = amountLeft;
+                        } else if(entry.CurrentAmount + itemInstance.Quantity > entry.MyItem.MaxStack) {
+                            amountLeft = entry.CurrentAmount + itemInstance.Quantity - entry.MyItem.MaxStack;
+                            entry.CurrentAmount = entry.MyItem.MaxStack;
+                            entry.MyInventoryEntry.GetComponent<ItemPanel>().UpdateText(entry.CurrentAmount);
+                            itemInstance.Quantity = amountLeft;
                             addWithLeftover = createEntry(itemInstance);
                             added = true;
                         }
@@ -46,13 +45,13 @@ public class PlayerInventory : MonoBehaviour
 
     private InventoryEntry createEntry(ItemInstance itemInstance) {
         InventoryEntry newEntry = new InventoryEntry();
-        newEntry.MyItem = itemInstance.myItem;
-        newEntry.CurrentAmount = itemInstance.quantity;
-        newEntry.MyInventoryEntry = inventoryDisplay.addItemToInventoryDisplay(itemInstance);
+        newEntry.MyItem = itemInstance.MyItem;
+        newEntry.CurrentAmount = itemInstance.Quantity;
+        newEntry.MyInventoryEntry = inventoryDisplay.AddItemToInventoryDisplay(itemInstance);
         return newEntry;
     }
 
-    public void logInventory() {
+    public void LogInventory() {
         foreach(InventoryEntry item in inventory) {
             Debug.Log("Item: " + item.MyItem.name + " Amount: " + item.CurrentAmount );
         }

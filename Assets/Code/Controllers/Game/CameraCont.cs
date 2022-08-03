@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CameraCont : MonoBehaviour
 {
-    public Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
     private StressReceiver cameraShaker;
-    public Transform followTarget;
+    [SerializeField] private Transform followTarget;
     private Vector3 target;
     private Vector2 direction;
-    public float cameraPad = 1000;
+    [SerializeField] private float cameraPad = 1000;
     private float speed = 5;
+    private Player player;
 
     void Start() {
+        player = Player.Instance;
         direction = new Vector2();
         cameraShaker = mainCamera.GetComponent<StressReceiver>();
     }
@@ -23,8 +25,8 @@ public class CameraCont : MonoBehaviour
         mainCamera.gameObject.transform.position = Vector3.MoveTowards(followTargetFrozenZ, mainCamera.gameObject.transform.position, Time.deltaTime * speed);
     }
 
-    void updateDirection() {
-        CharStates playerState = SystemsController.systemInstance.player.pac.getState();
+    private void updateDirection() {
+        CharStates playerState = player.State.CurrentState;
         if(playerState == CharStates.Walk_Top) {
             direction = new Vector2(0, cameraPad);
         } else if(playerState == CharStates.Walk_Right) {
@@ -36,7 +38,7 @@ public class CameraCont : MonoBehaviour
         }
     }
 
-    public void cameraShake(float intensity = 0.1f) {
+    public void CameraShake(float intensity = 0.1f) {
         cameraShaker.InduceStress(intensity);
     }
 }

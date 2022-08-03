@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ItemInstance : ScriptableObject
 {
-    public int id;
-    public Item myItem;
-    public int quantity;
+    public int Id;
+    public Item MyItem;
+    public int Quantity;
 }

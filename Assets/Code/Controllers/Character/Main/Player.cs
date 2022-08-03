@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player playerInstance;
-    public SystemsController sc;
-    public PlayerCharacterMovement pcm; 
-    public PlayerStateMachine psm;
-    public PlayerAnimationController pac;
-    public PlayerInventory pi;
+    public static Player Instance;
+    public PlayerCharacterMovement Movement { get; private set; }
+    public PlayerStateMachine State { get; private set; }
+    public PlayerAnimationController Animation { get; private set; }
+    public PlayerInventory Inventory { get; private set; }
 
     void Awake() {
-        if(playerInstance != null && playerInstance != this) {
+        if(Instance != null && Instance != this) {
             Destroy(this);
         } else {
-            playerInstance = this;
+            Instance = this;
         }
 
-        pcm = GetComponent<PlayerCharacterMovement>();
-        psm = GetComponent<PlayerStateMachine>();
-        pac = GetComponent<PlayerAnimationController>();
+        Movement = GetComponent<PlayerCharacterMovement>();
+        State = GetComponent<PlayerStateMachine>();
+        Animation = GetComponent<PlayerAnimationController>();
     }
 }

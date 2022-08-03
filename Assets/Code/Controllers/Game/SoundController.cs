@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    public List<ClipScript> fxs = new List<ClipScript>();
+    [SerializeField] private List<ClipScript> fxs = new List<ClipScript>();
 
     private List<AudioSource> audioPlayers;
 
-    public float volume;
-    public DefaultableText soundVolumeText;
+    private float volume;
+    [SerializeField] private DefaultableText soundVolumeText;
 
     void Awake()
     {
         audioPlayers = new List<AudioSource>();
         volume = 1f;
-        soundVolumeText.updateText("10");
+        soundVolumeText.UpdateText("10");
     }
 
     void FixedUpdate()
@@ -41,7 +41,7 @@ public class SoundController : MonoBehaviour
     {
         foreach (ClipScript fx in fxs)
         {
-            if (fx.clipName == effect)
+            if (fx.ClipName == effect)
             {
                 return fx;
             }
@@ -66,28 +66,19 @@ public class SoundController : MonoBehaviour
         return temp;
     }
 
-    public void playEffect(string effect)
+    public void PlayEffect(string effect)
     {
         AudioSource availablePlayer = availableSource();
-        availablePlayer.clip = stringToClip(effect).clip;
+        availablePlayer.clip = stringToClip(effect).Clip;
         availablePlayer.volume = volume;
         availablePlayer.Play();
     }
 
-    public void playRandomSound()
-    {
-        int randomIndex = Random.Range(0, fxs.Count);
-        AudioSource availablePlayer = availableSource();
-        availablePlayer.clip = fxs[randomIndex].clip;
-        availablePlayer.volume = volume;
-        availablePlayer.Play();
-    }
-
-    public void updateVolume(float newVolume) {
+    public void UpdateVolume(float newVolume) {
         volume = newVolume;
         float volumeText = newVolume * 10;
         int volumeTextInt = (int)volumeText;
-        soundVolumeText.updateText(volumeTextInt.ToString());
-        playEffect("click");
+        soundVolumeText.UpdateText(volumeTextInt.ToString());
+        PlayEffect("click");
     }
 }

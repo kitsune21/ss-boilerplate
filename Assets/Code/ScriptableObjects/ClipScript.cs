@@ -10,9 +10,9 @@ public enum ClipType {
 [CreateAssetMenu(fileName = "New Clip", menuName = "Sound/Clip")]
 public class ClipScript : ScriptableObject
 {
-    public int id;
-    public string clipName;
-    public AudioClip clip;
-    public ClipType type;
+    public int Id;
+    public string ClipName;
+    public AudioClip Clip;
+    public ClipType Type;
 }
 

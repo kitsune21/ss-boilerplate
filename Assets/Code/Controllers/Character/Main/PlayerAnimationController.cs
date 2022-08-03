@@ -6,28 +6,19 @@ public class PlayerAnimationController : MonoBehaviour
 {
     private Player player;
     private Animator animator;
-    private PlayerStateMachine psm;
     private CharStates currentState;
 
     void Start() {
-        player = Player.playerInstance;
+        player = Player.Instance;
         animator = GetComponentInChildren<Animator>();
-        psm = GetComponent<PlayerStateMachine>();
+        PlayerStateMachine.OnCharStateChanged += onCharStateChangedEvent;
     }
 
-    void FixedUpdate() {
-        if(player.sc.gsm.getState() != GameStates.GamePaused) {
-            currentState = psm.getState();
-            ChangeAnimationState();
-        }
+    private void OnDestroy() {
+        PlayerStateMachine.OnCharStateChanged -= onCharStateChangedEvent;    
     }
 
-    void ChangeAnimationState()
-    {
-        animator.Play(currentState.ToString());
-    }
-
-    public CharStates getState() {
-        return currentState;
+    private void onCharStateChangedEvent(CharStates newState) {
+        animator.Play(player.State.CurrentState.ToString());
     }
 }

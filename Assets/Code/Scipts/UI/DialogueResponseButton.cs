@@ -7,7 +7,7 @@ using TMPro;
 public class DialogueResponseButton : MonoBehaviour
 {
     private TMP_Text myText;
-    public int index;
+    private int index;
 
     public void setResponseText(string question, int newIndex) {
         myText = GetComponentInChildren<TMP_Text>();

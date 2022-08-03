@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b606d2154e8aa2e498effb015b5cb873, type: 3}
   m_Name: menu
   m_EditorClassIdentifier: 
-  id: 1
-  clipName: menu
-  clip: {fileID: 8300000, guid: 3cbd4f023e305234b8824cab2fe0f83d, type: 3}
+  Id: 2
+  ClipName: menu
+  Clip: {fileID: 8300000, guid: 3cbd4f023e305234b8824cab2fe0f83d, type: 3}
+  Type: 0

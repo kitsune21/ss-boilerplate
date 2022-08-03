@@ -14,7 +14,7 @@ public class DefaultableText : MonoBehaviour
         myTextDefaultString = myText.text;
     }
 
-    public void updateText(string newText) {
+    public void UpdateText(string newText) {
         myText.text = myTextDefaultString + newText;
     }
 }

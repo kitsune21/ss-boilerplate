@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &204096267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204096268}
+  - component: {fileID: 204096269}
+  m_Layer: 0
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204096268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204096267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4892655849096017582}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204096269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204096267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af554a7b2548812448a841c1943b5817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameMenuPanel: {fileID: 0}
 --- !u!1 &391555425
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  followTarget: {fileID: 0}
+  cameraPad: 1000
 --- !u!1 &1308594518
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902c19e8921ab274b83b05a235d52bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  systems: {fileID: 1539005273}
-  inGameMenuPanel: {fileID: 0}
 --- !u!1 &8882638492538882405
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +260,7 @@ Transform:
   - {fileID: 391555426}
   - {fileID: 1308594519}
   - {fileID: 939958347}
+  - {fileID: 204096268}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,7 +280,10 @@ MonoBehaviour:
   bgc: {fileID: 1481458641}
   mc: {fileID: 4317165675699727801}
   sc: {fileID: 4317165677349564484}
-  dm: {fileID: 0}
+  dm: {fileID: 1308594520}
+  cc: {fileID: 2100555202453254770}
+  mec: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &226357710675276353
 PrefabInstance:
   m_ObjectHideFlags: 0

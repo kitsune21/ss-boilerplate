@@ -8,21 +8,21 @@ public class TestDialogue
     
     [MenuItem("Test/Dialogue/Test Dialogue")]
     public static void testDialogue() {
-        DialogueManager dm = SystemsController.systemInstance.dm;
+        DialogueManager dm = SystemsController.Instance.Dialogue;
         Dialouge test = ScriptableObject.CreateInstance<Dialouge>();
-        test.characterName = "Jimbo";
+        test.CharacterName = "Jimbo";
         DialogueSentence testSentence = ScriptableObject.CreateInstance<DialogueSentence>();
-        testSentence.type = DialogueType.statement;
-        testSentence.sentence = "This is a test";
+        testSentence.Type = DialogueType.statement;
+        testSentence.Sentence = "This is a test";
         DialogueSentence testQuestion = ScriptableObject.CreateInstance<DialogueSentence>();
-        testQuestion.type = DialogueType.question;
-        testQuestion.sentence = "This is a test question?";
+        testQuestion.Type = DialogueType.question;
+        testQuestion.Sentence = "This is a test question?";
         string[] questions = new string[3]{"Yes", "No", "Maybe"};
-        testQuestion.questions = questions;
+        testQuestion.Questions = questions;
         string[] responses = new string[3]{"Response to yes", "Response to no", "Response to maybe"};
-        testQuestion.responses = responses;
+        testQuestion.Responses = responses;
         DialogueSentence[] sentences = new DialogueSentence[2]{testSentence, testQuestion};
-        test.sentences = sentences;
-        dm.loadDialogue(test);
+        test.Sentences = sentences;
+        dm.LoadDialogue(test);
     }
 }

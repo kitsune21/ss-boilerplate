@@ -1,28 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameStateMachine : MonoBehaviour
 {
-    private GameStates state;
+    public GameStates CurrentState { get; private set; }
+
+    public static event Action<GameStates> OnGameStateChanged;
 
     void Awake() {
-        state = GameStates.InGame;
+        UpdateGameState(GameStates.InGame);
     }
 
-    public GameStates getState() {
-        return state;
-    }
+    public void UpdateGameState(GameStates newState) {
+        CurrentState = newState;
 
-    public void setStateInGame() {
-        state = GameStates.InGame;
-    }
+        switch(newState) {
+            case GameStates.MainMenu:
+                break;
+            case GameStates.InMenu:
+                break;
+            case GameStates.InGame:
+                break;
+            case GameStates.GamePaused:
+                break;
+            case GameStates.Victory:
+                break;
+            case GameStates.GameOver:
+                break;
+            case GameStates.PlayerDied:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
 
-    public void setStateGamePaused() {
-        state = GameStates.GamePaused;
-    }
-
-    public void setStateMainMenu() {
-        state = GameStates.MainMenu;
+        OnGameStateChanged?.Invoke(newState);
     }
 }

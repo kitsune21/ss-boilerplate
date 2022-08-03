@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class SystemsController : MonoBehaviour
 {
-    public static SystemsController systemInstance;
-    public GameStateMachine gsm;
-    public BaseGameController bgc;
-    public MusicController mc;
-    public SoundController sc;
-    public DialogueManager dm;
-    public CameraCont cc;
-    public Player player;
+    public static SystemsController Instance;
+    public GameStateMachine State { get; private set; }
+    public BaseGameController Game { get; private set; }
+    public MusicController Music { get; private set; }
+    public SoundController Sound { get; private set; }
+    public DialogueManager Dialogue { get; private set; }
+    public CameraCont Camera { get; private set; }
+    public MenuController Menu { get; private set; }
 
     void Awake() {
-        if(systemInstance != null && systemInstance != this) {
+        if(Instance != null && Instance != this) {
             Destroy(this);
         } else {
-            systemInstance = this;
+            Instance = this;
         }
+
+        State = GetComponentInChildren<GameStateMachine>();
+        Game = GetComponentInChildren<BaseGameController>();
+        Music = GetComponentInChildren<MusicController>();
+        Sound = GetComponentInChildren<SoundController>();
+        Dialogue = GetComponentInChildren<DialogueManager>();
+        Camera = GetComponentInChildren<CameraCont>();
+        Menu = GetComponentInChildren<MenuController>();
     }
 }

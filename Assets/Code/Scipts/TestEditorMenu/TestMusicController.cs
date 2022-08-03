@@ -7,25 +7,25 @@ public class TestMusicController
 {
     [MenuItem("Test/Music/Play Next Song")]
     public static void playNext() {
-        MusicController mc = SystemsController.systemInstance.mc;
-        ClipScript temp = mc.getCurrentClip();
+        MusicController mc = SystemsController.Instance.Music;
+        ClipScript temp = mc.CurrentClip;
         if(temp != null) {
-            for(int i = 0; i < mc.songs.Count; i++) {
-                if(temp.clipName == mc.songs[i].clipName) {
-                    if(i + 1 >= mc.songs.Count) {
-                        mc.loopClip(mc.songs[0].clipName);
+            for(int i = 0; i < mc.getSongs().Count; i++) {
+                if(temp.ClipName == mc.getSongs()[i].ClipName) {
+                    if(i + 1 >= mc.getSongs().Count) {
+                        mc.LoopClip(mc.getSongs()[0].ClipName);
                     } else {
-                        mc.loopClip(mc.songs[i+1].clipName);
+                        mc.LoopClip(mc.getSongs()[i+1].ClipName);
                     }
                 }
             }
         } else {
-            mc.loopClip(mc.songs[0].clipName);
+            mc.LoopClip(mc.getSongs()[0].ClipName);
         }
     }
     
     [MenuItem("Test/Music/Stop Song")]
     public static void stopMusic() {
-        SystemsController.systemInstance.mc.stopClip();
+        SystemsController.Instance.Music.StopClip();
     }
 }

@@ -6,18 +6,16 @@ using TMPro;
 
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField]
-    private Image image;
+    [SerializeField] private Image image;
 
-    [SerializeField]
-    private TMP_Text text;
+    [SerializeField] private TMP_Text text;
 
-    public void updateTextAndImage(ItemInstance itemInstance) {
-        image.sprite = itemInstance.myItem.uiImage;
-        text.text = itemInstance.quantity.ToString();
+    public void UpdateTextAndImage(ItemInstance itemInstance) {
+        image.sprite = itemInstance.MyItem.UiImage;
+        text.text = itemInstance.Quantity.ToString();
     }
 
-    public void updateText(int amount) {
+    public void UpdateText(int amount) {
         text.text = amount.ToString();
     }
 }

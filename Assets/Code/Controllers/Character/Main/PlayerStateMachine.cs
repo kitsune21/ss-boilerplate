@@ -1,54 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private CharStates state;
+    public CharStates CurrentState { get; private set; }
     private PlayerCharacterMovement pcm;
     private Vector2 movement;
-
-    void Start() {
-        pcm = GetComponent<PlayerCharacterMovement>();
-    }
+    public static event Action<CharStates> OnCharStateChanged;
+    private SystemsController systems;
 
     void Awake() {
-        state = CharStates.Idle_Down;
+        updateState(CharStates.Idle_Down);
+    }
+    void Start() {
+        pcm = GetComponent<PlayerCharacterMovement>();
+        systems = SystemsController.Instance;
     }
 
     void Update() {
-        movement = pcm.getMovement();
-        updateState();
+        if(systems.State.CurrentState == GameStates.InGame) {
+            movement = pcm.GetMovement();
+            calculateNewState();
+        }
     }
 
-    private void updateState() {
+    private void calculateNewState() {
         if(movement == Vector2.zero) {
-            if(state == CharStates.Walk_Top) {
-                state = CharStates.Idle_Top;
+            if(CurrentState == CharStates.Walk_Top) {
+                updateState(CharStates.Idle_Top);
             }
-            if(state == CharStates.Walk_Down) {
-                state = CharStates.Idle_Down;
+            if(CurrentState == CharStates.Walk_Down) {
+                updateState(CharStates.Idle_Down);
             }
-            if(state == CharStates.Walk_Left) {
-                state = CharStates.Idle_Left;
+            if(CurrentState == CharStates.Walk_Left) {
+                updateState(CharStates.Idle_Left);
             }
-            if(state == CharStates.Walk_Right) {
-                state = CharStates.Idle_Right;
+            if(CurrentState == CharStates.Walk_Right) {
+                updateState(CharStates.Idle_Right);
             }
-        }
-        if(movement.y > 0) {
-            state = CharStates.Walk_Top;
-        } else if(movement.y < 0) {
-            state = CharStates.Walk_Down;
         }
         if(movement.x > 0) {
-            state = CharStates.Walk_Right;
+            updateState(CharStates.Walk_Right);
         } else if(movement.x < 0) {
-            state = CharStates.Walk_Left;
-        }
+            updateState(CharStates.Walk_Left);
+        } else if(movement.y > 0) {
+            updateState(CharStates.Walk_Top);
+        } else if(movement.y < 0) {
+            updateState(CharStates.Walk_Down);
+        }   
     }
 
-    public CharStates getState() {
-        return state;
+    private void updateState(CharStates newState) {
+        CurrentState = newState;
+
+        OnCharStateChanged?.Invoke(newState);
     }
 }

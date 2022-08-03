@@ -13,18 +13,18 @@ public class CreditPanel : MonoBehaviour
     void Start()
     {
         people.Sort(delegate(CreditEntry x, CreditEntry y) {
-            return x.category.CompareTo(y.category);
+            return x.Category.CompareTo(y.Category);
         });
         foreach(CreditEntry person in people)
         {
-            if(person.category != currentCategory)
+            if(person.Category != currentCategory)
             {
-                currentCategory = person.category;
+                currentCategory = person.Category;
                 GameObject title = Instantiate(titleText, transform);
-                title.GetComponent<Text>().text = person.category.ToString();
+                title.GetComponent<Text>().text = person.Category.ToString();
             }
             GameObject peon = Instantiate(personText, transform);
-            peon.GetComponent<Text>().text = person.personNameFull;
+            peon.GetComponent<Text>().text = person.PersonNameFull;
         }
     }
 }
