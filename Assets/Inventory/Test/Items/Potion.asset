@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaa9eb9f004a344db6e96e3005ebd81, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Potion
-  description: Heals 20 hp.
-  type: 0
-  stackable: 1
-  maxStack: 10
-  uiImage: {fileID: 21300000, guid: 9d8c1b95821292b499c45755992aab4a, type: 3}
-  gameImage: {fileID: 21300000, guid: 9d8c1b95821292b499c45755992aab4a, type: 3}
+  Id: 1
+  ItemName: Potion
+  Description: Heals some health
+  Type: 0
+  Stackable: 1
+  MaxStack: 15
+  UiImage: {fileID: 21300000, guid: 9d8c1b95821292b499c45755992aab4a, type: 3}
+  GameImage: {fileID: 21300000, guid: 9d8c1b95821292b499c45755992aab4a, type: 3}

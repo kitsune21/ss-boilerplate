@@ -6,6 +6,7 @@ public enum GameStates
     MainMenu,
     InGame,
     InMenu,
+    InDialogue,
     GamePaused,
     PlayerDied,
     GameOver,

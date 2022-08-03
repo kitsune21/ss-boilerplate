@@ -11,11 +11,19 @@ public class DialogueResponseButton : MonoBehaviour
 
     public void setResponseText(string question, int newIndex) {
         myText = GetComponentInChildren<TMP_Text>();
-        myText.text = (newIndex + 1) + ") " + question;
+        myText.text = question;
         index = newIndex;
     }
 
     public int getIndex() {
         return index;
+    }
+
+    public void HighLightText() {
+        myText.color = Color.white;
+    }
+    
+    public void UnHighLightText() {
+        myText.color = Color.black;
     }
 }

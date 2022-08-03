@@ -20,5 +20,6 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerCharacterMovement>();
         State = GetComponent<PlayerStateMachine>();
         Animation = GetComponent<PlayerAnimationController>();
+        Inventory = GetComponent<PlayerInventory>();
     }
 }
