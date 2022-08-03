@@ -23,6 +23,8 @@ public class GameStateMachine : MonoBehaviour
                 break;
             case GameStates.InGame:
                 break;
+            case GameStates.InDialogue:
+                break;
             case GameStates.GamePaused:
                 break;
             case GameStates.Victory:
